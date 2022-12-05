@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-require('../server-side/src/db/connectdb.js')
-const botRouter = require('../server-side/src/routers/botRouter');
+require('./src/db/connectdb.js')
+const botRouter = require('./src/routers/botRouter');
 
 // Connecting To Port
 const port = 8080;
