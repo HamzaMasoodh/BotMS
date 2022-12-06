@@ -4,7 +4,7 @@ require('./src/db/connectdb.js')
 const botRouter = require('./src/routers/botRouter');
 
 // Connecting To Port
-const port = 8080;
+const port = process.env.port || 8080;
 
 // Automatically parse incoming JSON to an object so we access it in our request handlers
 app.use(express.json())
