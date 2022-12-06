@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: false}))
 // Using the botRouter file
 app.use(botRouter);
 
-app.get('/readBot', async (req, res) => {
+app.get('/readingBot', async (req, res) => {
     try {
         const readBot = "await Bot.find({})"
         console.log(new Date().toLocaleString() + ' ' + 'Loading To Read Bot...')
