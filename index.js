@@ -17,7 +17,7 @@ app.use(botRouter);
 
 app.get('/readBot', async (req, res) => {
     try {
-        const readBot = await Bot.find({})
+        const readBot = "await Bot.find({})"
         console.log(new Date().toLocaleString() + ' ' + 'Loading To Read Bot...')
         res.send(readBot) 
         console.log(new Date().toLocaleString() + ' ' + 'Reading Bot...')    
