@@ -17,6 +17,23 @@ router.post('/createBot', async (req, res) => {
     }
 })
 
+// Read Data by uuid From MongooDB
+router.get('/getBot/:uuid', async (req, res) => {
+    try {
+        const uuid = req.params.uuid
+        const readBot = await Bot.findOne({uuid : uuid})
+        if (!readBot) {
+            return res.status(404).send({ message: "The bot id is not correct" });
+          }
+
+        console.log(new Date().toLocaleString() + ' ' + 'Loading To Read Bot...')
+        res.send(readBot) 
+        console.log(new Date().toLocaleString() + ' ' + 'Reading Bot...')    
+    } catch(e) {
+        res.status(500).send(e);
+    }
+})
+
 // Read Data From MongooDB
 router.get('/readBot', async (req, res) => {
     try {
