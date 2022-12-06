@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+var cors = require('cors')
+
 require('./src/db/connectdb.js')
 const botRouter = require('./src/routers/botRouter');
 const Bot = require('./src/model/botModel')
