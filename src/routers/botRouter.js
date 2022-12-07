@@ -59,16 +59,16 @@ router.delete('/deleteAllBot', async (req, res) => {
 })
 
 // Update Data By Id
-router.patch('/updateBot/:id', async (req, res) => {
+router.patch('/updateBot/:uuid', async (req, res) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = ['BotName', 'BotStatus','Message']
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
     if (!isValidOperation) {
         return res.status(400).send({ error: 'Invalid updates!' })
     }
-    const _id = req.params.id
+    const uuid = req.params.uuid
     try {
-        const updateBot = await Bot.findOne({_id})
+        const updateBot = await Bot.findOne({uuid})
         if (!updateBot) {
             res.status(404).send('ID NOT FOUND FOR UPDATE!')
             console.log(new Date().toLocaleString() + ' ' + 'ID NOT FOUND FOR UPDATE!');
