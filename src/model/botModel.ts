@@ -1,12 +1,13 @@
-const mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
+
 
 // Creation of Bot Schema
-const botSchema = new mongoose.Schema({
-    BotName : {
+const botSchema = new  mongoose.Schema({
+    botName : {
         type: String,
         required: true,
     },
-    BotStatus : {
+    botStatus : {
       type: String,
       required: true,
     },
@@ -15,14 +16,15 @@ const botSchema = new mongoose.Schema({
       required: true,
       // default: "1fdxfxdfe545ghg",
     },
-    Message : {
+    message : {
       type: String,
       required: true,
     }
 }, {
   timestamps: true
 })
- 
+
+
 botSchema.pre("save", async function (next) {
   const bot =  this;
   console.log('Just Before Saving!');
@@ -30,54 +32,6 @@ botSchema.pre("save", async function (next) {
 });
 
 // Creation of Model 
-const Bot = new mongoose.model('Bot',botSchema)
-module.exports = Bot
+const Bot = mongoose.model('Bot',botSchema)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export {Bot}

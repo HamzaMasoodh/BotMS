@@ -1,9 +1,12 @@
-const express = require('express');
-const Bot = require('../model/botModel')
-const router = new express.Router();
+// import express from 'express';
+import { Bot } from '../model/botModel'
+import express, { Express, Request, Response } from 'express';
+const botRouter: Express = express();
+
+// const router = new express.Router();
 
 // Create and Add Data into MongooDB
-router.post('/createBot', async (req, res) => {
+botRouter.post('/createBot', async (req: Request, res: Response) => {
     const bot = new Bot({...req.body})
     console.log("This is Bot body....", bot)
     try {
@@ -11,14 +14,14 @@ router.post('/createBot', async (req, res) => {
         console.log(new Date().toLocaleString() + ' ' + 'Loading To Create Bot...')
         res.status(201).send(bot);
         console.log(new Date().toLocaleString() + ' ' + 'Creating Bot...')
-    } catch(e) {
+    } catch(e:any) {
         console.log("This is error",e)
         res.status(400).send(e.message)
     }
 })
 
 // Read Data by uuid From MongooDB
-router.get('/getBot/:uuid', async (req, res) => {
+botRouter.get('/getBot/:uuid', async (req: Request, res: Response) => {
     try {
         const uuid = req.params.uuid
         const readBot = await Bot.findOne({uuid : uuid})
@@ -35,7 +38,7 @@ router.get('/getBot/:uuid', async (req, res) => {
 })
 
 // Read Data From MongooDB
-router.get('/readBot', async (req, res) => {
+botRouter.get('/readBot', async (req: Request, res: Response) => {
     try {
         const readBot = await Bot.find({})
         console.log(new Date().toLocaleString() + ' ' + 'Loading To Read Bot...')
@@ -47,7 +50,7 @@ router.get('/readBot', async (req, res) => {
 })
 
 // Delete ALl Data
-router.delete('/deleteAllBot', async (req, res) => {
+botRouter.delete('/deleteAllBot', async (req: Request, res: Response) => {
     try {
         const deleteAllBot = await Bot.remove({})
         console.log(new Date().toLocaleString() + ' ' + 'Loading To Delete All Bots...')        
@@ -59,7 +62,7 @@ router.delete('/deleteAllBot', async (req, res) => {
 })
 
 // Update Data By Id
-router.patch('/updateBot/:uuid', async (req, res) => {
+botRouter.patch('/updateBot/:uuid', async (req: Request, res: Response) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = ['BotName', 'BotStatus','Message']
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
@@ -68,7 +71,7 @@ router.patch('/updateBot/:uuid', async (req, res) => {
     }
     const uuid = req.params.uuid
     try {
-        const updateBot = await Bot.findOne({uuid})
+        const updateBot:any = await Bot.findOne({uuid})
         if (!updateBot) {
             res.status(404).send('ID NOT FOUND FOR UPDATE!')
             console.log(new Date().toLocaleString() + ' ' + 'ID NOT FOUND FOR UPDATE!');
@@ -85,4 +88,5 @@ router.patch('/updateBot/:uuid', async (req, res) => {
     }
 })
 
-module.exports = router
+export {botRouter}
+// module.exports = router
