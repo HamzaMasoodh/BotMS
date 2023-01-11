@@ -52,7 +52,7 @@ botRouter.get('/readBot', async (req: Request, res: Response) => {
 // Delete ALl Data
 botRouter.delete('/deleteAllBot', async (req: Request, res: Response) => {
     try {
-        const deleteAllBot = await Bot.remove({})
+        const deleteAllBot = await Bot.deleteMany({});
         console.log(new Date().toLocaleString() + ' ' + 'Loading To Delete All Bots...')        
         res.send(deleteAllBot)
         console.log(new Date().toLocaleString() + ' ' + 'Deleting All Bot...')  
