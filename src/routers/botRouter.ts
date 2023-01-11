@@ -64,7 +64,7 @@ botRouter.delete('/deleteAllBot', async (req: Request, res: Response) => {
 // Update Data By Id
 botRouter.patch('/updateBot/:uuid', async (req: Request, res: Response) => {
     const updates = Object.keys(req.body)
-    const allowedUpdates = ['BotName', 'BotStatus','Message']
+    const allowedUpdates = ['botName', 'botStatus','message']
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
     if (!isValidOperation) {
         return res.status(400).send({ error: 'Invalid updates!' })
