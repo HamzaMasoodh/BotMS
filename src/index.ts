@@ -1,4 +1,4 @@
-import cors from 'cors';
+import * as cors from 'cors';
 import {conection} from './db/connectdb'
 require('./db/connectdb')
 import {botRouter} from'./routers/botRouter'
