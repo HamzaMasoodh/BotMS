@@ -19,7 +19,8 @@ const botSchema = new  mongoose.Schema({
     message : {
       type: String,
       required: true,
-    }
+    },
+    Apikey:{}
 }, {
   timestamps: true
 })
